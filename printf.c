@@ -47,10 +47,10 @@ int parse_and_output(const char *format, ...)
 					count++;
 					much++;
 				}
-				count += count;
 			} else if (*format == '%')
 			{
 				_putchar('%');
+				count += 1;
 			}
 		} else
 		{
