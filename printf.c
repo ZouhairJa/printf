@@ -8,7 +8,8 @@ int parse_and_output(const char *format, ...);
 int _printf(const char *format, ...)
 {
 	int count = 0;
-
+	if (format == NULL)
+		return (-1);
 	count = parse_and_output(format);
 	return (count);
 }
