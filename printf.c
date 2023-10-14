@@ -8,6 +8,7 @@ int parse_and_output(const char *format, ...);
 int _printf(const char *format, ...)
 {
 	int count = 0;
+
 	if (format == NULL)
 		return (-1);
 	count = parse_and_output(format);
@@ -21,43 +22,40 @@ int _printf(const char *format, ...)
 int parse_and_output(const char *format, ...)
 {
 	int count = 0;
-	char *s;
+	int c;
+	char *much;
 	va_list args;
 
 	va_start(args, format);
 	while (*format)
 	{
-		if (*format != '%')
-		{
-			putchar(*format);
-			count++;
-		} else
+		if (*format == '%')
 		{
 			format++;
-			if (*format == '\0')
+			if (*format == 'c')
 			{
-				break;
+				c = va_arg(args, int);
+				_putchar(c);
+				count++;
 			}
-			switch (*format)
+			else if (*format == 's')
 			{
-				case 'c':
-					putchar(va_arg(args, int));
+				much = va_arg(args, char *);
+				while (*much)
+				{
+					_putchar(*much);
 					count++;
-					break;
-				case 's':
-					s = va_arg(args, char *);
-					while (*s)
-					{
-						putchar(*s);
-						count++;
-						s++;
-					}
-					break;
-				case '%':
-					putchar('%');
-					count++;
-					break;
+					much++;
+				}
+				count += count;
+			} else if (*format == '%')
+			{
+				_putchar('%');
 			}
+		} else
+		{
+			_putchar(*format);
+			count += 1;
 		}
 		format++;
 	}
