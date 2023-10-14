@@ -7,4 +7,5 @@
 int _putchar(char c);
 int _printf(const char *format, ...);
 int _print_int(const char *format, ...);
+int print_address(va_list l, flags_t *f)
 #endif
