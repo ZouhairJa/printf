@@ -55,7 +55,6 @@ int parse_and_output(const char *format, ...)
 		} else
 		{
 			_putchar(*format);
-			count += 1;
 		}
 		format++;
 	}
